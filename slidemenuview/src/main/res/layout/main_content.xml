@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical">
+    <!--标题部分-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/top_bar_bg">
+        <ImageView
+            android:id="@+id/iv_open_menu_main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/main_back"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/top_bar_divider"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="智慧生活"
+            android:textColor="#ffffff"
+            android:textSize="30sp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="60dp"/>
+    </LinearLayout>
+
+    <!--内容部分-->
+    <TextView
+        android:id="@+id/tv_content_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="tv_content_main"
+        android:textSize="20sp"
+        android:gravity="center"/>
+</LinearLayout>
