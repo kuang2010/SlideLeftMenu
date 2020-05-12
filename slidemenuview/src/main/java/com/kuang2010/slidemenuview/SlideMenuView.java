@@ -14,7 +14,7 @@ import android.widget.Scroller;
  * author: kuangzeyu2019
  * date: 2020/5/11
  * time: 21:23
- * desc: 自定义ViewGroup
+ * desc: 自定义ViewGroup  左滑菜单
  */
 public class SlideMenuView extends ViewGroup {
 
@@ -109,8 +109,23 @@ public class SlideMenuView extends ViewGroup {
 
                 int dx = Math.round(moveX - mDownX);
 
-                scrollBy(-dx, 0);//移动屏幕，向touch相反的反向移动
+                //方法二 setX移动控件
+                /*mChild_left_menu.setX(mChild_left_menu.getX()+dx);
+                mChild_main_content.setX(mChild_main_content.getX()+dx);
+                  if (mChild_left_menu.getX()<-mChild_left_menu.getMeasuredWidth()){
+                      mChild_left_menu.setX(-mChild_left_menu.getMeasuredWidth());
+                  }else if (mChild_left_menu.getX()>0){
+                      mChild_left_menu.setX(0);
+                  }
+                if (mChild_main_content.getX()<0){
+                    mChild_main_content.setX(0);
+                }else if (mChild_main_content.getX()>mChild_left_menu.getMeasuredWidth()){
+                    mChild_main_content.setX(mChild_left_menu.getMeasuredWidth());
+                }*/
 
+
+                //方法一：移动屏幕
+                scrollBy(-dx, 0);//移动屏幕，向touch相反的反向移动
                 //边界判断
                 int scrollX = getScrollX();//屏幕当前的x位置
                 if (scrollX < -mChild_left_menu.getMeasuredWidth()) {
@@ -124,6 +139,24 @@ public class SlideMenuView extends ViewGroup {
                 break;
 
             case MotionEvent.ACTION_UP:
+                //方法二 setX
+                if (false){
+                    if (mChild_left_menu.getX()<-mChild_left_menu.getMeasuredWidth()/2){
+//                        mChild_left_menu.setX(-mChild_left_menu.getMeasuredWidth());
+                        mChild_left_menu.animate().setDuration(500).translationX(0);
+//                        mChild_main_content.setX(0);
+                        mChild_main_content.animate().setDuration(500).translationX(0);
+                    }else{
+//                        mChild_left_menu.setX(0);
+                        mChild_left_menu.animate().setDuration(500).translationX(mChild_left_menu.getMeasuredWidth());
+//                        mChild_main_content.setX(mChild_left_menu.getMeasuredWidth());
+                        mChild_main_content.animate().setDuration(500).translationX(mChild_left_menu.getMeasuredWidth());
+                    }
+
+                    return true;
+                }
+
+
                 //松手使其处于边界状态
                 int screenX = getScrollX();//屏幕当前的x位置
                 if (screenX > -mChild_left_menu.getMeasuredWidth() / 2) {
